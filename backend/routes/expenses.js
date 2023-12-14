@@ -58,15 +58,17 @@ router.post("/", upload.none(), authenticateToken, async (req, res) => {
 });
 
 // Define a route to get expense data
-router.get("/api/expenses", async (req, res) => {
+router.get("/", async (req, res) => {
+  console.log(req.body);
+  console.log(res.body);
   try {
     // Query to get all expenses
-    const result = await pool.query("SELECT * FROM expense");
+    const result = await pool.query("SELECT * FROM expenses");
 
     // Send the result as JSON
     res.json(result.rows);
   } catch (error) {
-    console.error("Error fetching expense data:", error);
+    console.error("Error fetching expenses data:", error);
     res.status(500).json({ error: "Internal Server Error" });
   }
 });
