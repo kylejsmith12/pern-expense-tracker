@@ -2,8 +2,8 @@
 const jwt = require("jsonwebtoken");
 
 const authenticateToken = (req, res, next) => {
-  console.log("req: ", req);
-  console.log("res: ", res);
+  console.log("middleware req: ", req);
+  // console.log("res: ", res);
   const cookieHeader = req.headers.cookie;
   const token = cookieHeader && cookieHeader.split("=")[1];
   console.log("Received token", token);

@@ -77,6 +77,7 @@ const AddExpense = ({ user }) => {
     );
     formData.append("date", date);
     formData.append("notes", notes);
+    console.log("userId: ", user);
     formData.append("user_id", user.id); // Include user ID in the FormData
 
     // Append receipt only if it exists

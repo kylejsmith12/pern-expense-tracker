@@ -73,8 +73,26 @@ const ViewExpenses = () => {
     setIsAllSelected(newSelectedRows.length === filteredData.length);
   };
 
-  const handleDeleteRow = (id) => {
-    // Implement delete row logic here
+  const handleDeleteRow = async (e, id) => {
+    e.preventDefault();
+
+    try {
+      const response = await fetch(`http://localhost:5001/api/expenses/${id}`, {
+        method: "DELETE",
+        credentials: "include",
+      });
+
+      if (response.ok) {
+        // Remove the deleted expense from the state
+        setExpenses(expenses.filter((expense) => expense.id !== id));
+        setFilteredData(filteredData.filter((expense) => expense.id !== id));
+        console.log("Expense deleted successfully");
+      } else {
+        console.error("Error deleting expense:", response.statusText);
+      }
+    } catch (error) {
+      console.error("Error deleting expense:", error.message);
+    }
   };
 
   const handleChangePage = (event, newPage) => {
@@ -166,7 +184,7 @@ const ViewExpenses = () => {
                     <TableCell>
                       <IconButton
                         aria-label="delete"
-                        onClick={() => handleDeleteRow(expense.id)}
+                        onClick={(e) => handleDeleteRow(e, expense.id)}
                       >
                         <DeleteIcon />
                       </IconButton>
