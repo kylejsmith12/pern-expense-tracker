@@ -24,6 +24,7 @@ const categories = [
   "Utilities",
   "Insurance",
   "Cellphone",
+  "Medical",
   "Amazon",
   "Subscriptions",
   "Miscellaneous",

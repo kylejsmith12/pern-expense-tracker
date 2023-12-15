@@ -12,6 +12,7 @@ import {
   Checkbox,
   IconButton,
   TablePagination,
+  Paper, // Import Paper component from MUI
 } from "@mui/material";
 import DeleteIcon from "@mui/icons-material/Delete";
 
@@ -91,7 +92,7 @@ const ViewExpenses = () => {
   };
 
   return (
-    <div>
+    <Paper elevation={3} style={{ padding: 16, marginBottom: 16 }}>
       <Box display="flex" justifyContent="space-between" alignItems="center">
         <Typography variant="h4">Expense Data</Typography>
         {/* Implement any additional actions or buttons here */}
@@ -128,12 +129,12 @@ const ViewExpenses = () => {
                   />
                 </TableCell>
                 <TableCell>ID</TableCell>
-                <TableCell>Description</TableCell>
+                <TableCell>Category</TableCell>
                 <TableCell>Amount</TableCell>
                 {/* Include additional columns based on your expense data */}
                 <TableCell>Date</TableCell>
+                <TableCell>Notes</TableCell>
                 <TableCell>Receipt</TableCell>
-                <TableCell>User ID</TableCell>
                 {/* Include additional columns based on your expense data */}
                 <TableCell>Action</TableCell>
               </TableRow>
@@ -153,12 +154,13 @@ const ViewExpenses = () => {
                     </TableCell>
                     {/* Expense data cells */}
                     <TableCell>{expense.id}</TableCell>
-                    <TableCell>{expense.description}</TableCell>
+                    <TableCell>{expense.category}</TableCell>
                     <TableCell>{expense.amount}</TableCell>
                     {/* Include additional cells based on your expense data */}
-                    <TableCell>{convertToLocal(expense.date)}</TableCell>
+                    {/* <TableCell>{convertToLocal(expense.date)}</TableCell> */}
+                    <TableCell>{expense.date}</TableCell>
+                    <TableCell>{expense.notes}</TableCell>
                     <TableCell>{expense.receipt}</TableCell>
-                    <TableCell>{expense.user_id}</TableCell>
                     {/* Include additional cells based on your expense data */}
                     {/* Action cell with delete button */}
                     <TableCell>
@@ -198,7 +200,7 @@ const ViewExpenses = () => {
           rowsPerPageOptions={[5, 10, 25, 50, 100]}
         />
       )}
-    </div>
+    </Paper>
   );
 };
 

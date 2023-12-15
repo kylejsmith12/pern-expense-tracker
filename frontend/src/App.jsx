@@ -19,6 +19,8 @@ import Login from "./components/Login/Login";
 import Register from "./components/Register/Register";
 import AddExpense from "./components/AddExpense/AddExpense";
 import ViewExpenses from "./components/ViewExpense/ViewExpenses";
+import ViewCategories from "./components/ViewCategories/ViewCategories";
+import "chart.js/auto";
 
 function App() {
   const storedUser = JSON.parse(localStorage.getItem("user"));
@@ -120,6 +122,10 @@ function App() {
         <Route path="/register" element={<Register />} />
         <Route path="/expenses" element={<ViewExpenses user={user?.user} />} />
         <Route path="/add-expense" element={<AddExpense user={user?.user} />} />
+        <Route
+          path="/categories"
+          element={<ViewCategories user={user?.user} />}
+        />
       </Routes>
     </Router>
   );
