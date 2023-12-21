@@ -31,10 +31,27 @@ const ViewCategories = () => {
     setSelectedMonth(event.target.value);
   };
 
+  const totalDataSum = categoryData.datasets?.[0].data.reduce(
+    (sum, value) => sum + value,
+    0
+  );
+  const categoryPercentageData = {
+    labels: categoryData.labels,
+    datasets: [
+      {
+        data: categoryData.datasets?.[0].data.map(
+          (value) => (value / totalDataSum) * 100
+        ),
+        backgroundColor: categoryData.datasets?.[0].backgroundColor,
+        hoverBackgroundColor: categoryData.datasets?.[0].hoverBackgroundColor,
+      },
+    ],
+  };
+
   useEffect(() => {
     fetchDataAndUpdateState();
   }, [selectedMonth]);
-
+  console.log(categoryData);
   return (
     <Grid container spacing={2}>
       <MonthSelector
@@ -43,7 +60,7 @@ const ViewCategories = () => {
       />
       <ChartPaper
         title="Expense Distribution"
-        chartData={categoryData}
+        chartData={categoryPercentageData}
         ChartComponent={Pie}
         colors={chartColors}
       />

@@ -21,6 +21,7 @@ import AddExpense from "./components/AddExpense/AddExpense";
 import ViewExpenses from "./components/ViewExpense/ViewExpenses";
 import ViewCategories from "./components/ViewCategories/ViewCategories";
 import "chart.js/auto";
+import Reports from "./components/Reports/Reports";
 
 function App() {
   const storedUser = JSON.parse(localStorage.getItem("user"));
@@ -126,6 +127,7 @@ function App() {
           path="/categories"
           element={<ViewCategories user={user?.user} />}
         />
+        <Route path="/reports" element={<Reports user={user?.user} />} />
       </Routes>
     </Router>
   );
