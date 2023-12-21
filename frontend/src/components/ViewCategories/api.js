@@ -3,7 +3,7 @@ const apiUrl = "http://localhost:5001/api/expenses";
 import { chartColors } from "./chartcolors";
 export const fetchData = async (selectedMonth) => {
   try {
-    const response = await fetch(apiUrl);
+    const response = await fetch(apiUrl, { credentials: "include" });
     const data = await response.json();
 
     if (!Array.isArray(data)) {

@@ -16,7 +16,8 @@ import {
 } from "@mui/material";
 import DeleteIcon from "@mui/icons-material/Delete";
 
-const ViewExpenses = () => {
+const ViewExpenses = ({ user }) => {
+  console.log("user: ", user);
   const [expenses, setExpenses] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [progress, setProgress] = useState(0);
@@ -29,9 +30,12 @@ const ViewExpenses = () => {
 
   useEffect(() => {
     // Fetch data from the backend API
-    fetch("http://localhost:5001/api/expenses")
+    fetch("http://localhost:5001/api/expenses", {
+      credentials: "include",
+    })
       .then((response) => response.json())
       .then((data) => {
+        console.log("data: ", data);
         setExpenses(data);
         setFilteredData(data);
         setIsLoading(false);

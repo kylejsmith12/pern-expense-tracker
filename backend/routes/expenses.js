@@ -58,12 +58,17 @@ router.post("/", upload.none(), authenticateToken, async (req, res) => {
 });
 
 // Define a route to get expense data
-router.get("/", async (req, res) => {
+router.get("/", authenticateToken, async (req, res) => {
   // console.log(req.body);
-  // console.log(res.body);
+  console.log("the userId: ", req.user.userId);
+  const userId = req.user.userId; // Assuming you have user information in the request
+
   try {
     // Query to get all expenses
-    const result = await pool.query("SELECT * FROM expenses");
+    const result = await pool.query(
+      "SELECT * FROM expenses WHERE user_id = $1",
+      [userId]
+    );
 
     // Send the result as JSON
     res.json(result.rows);

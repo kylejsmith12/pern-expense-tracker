@@ -121,13 +121,22 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login onLogin={handleLogin} />} />
         <Route path="/register" element={<Register />} />
-        <Route path="/expenses" element={<ViewExpenses user={user?.user} />} />
-        <Route path="/add-expense" element={<AddExpense user={user?.user} />} />
+        <Route
+          path="/expenses"
+          element={user?.user && <ViewExpenses user={user?.user} />}
+        />
+        <Route
+          path="/add-expense"
+          element={user?.user && <AddExpense user={user?.user} />}
+        />
         <Route
           path="/categories"
-          element={<ViewCategories user={user?.user} />}
+          element={user?.user && <ViewCategories user={user?.user} />}
         />
-        <Route path="/reports" element={<Reports user={user?.user} />} />
+        <Route
+          path="/reports"
+          element={user?.user && <Reports user={user?.user} />}
+        />
       </Routes>
     </Router>
   );
