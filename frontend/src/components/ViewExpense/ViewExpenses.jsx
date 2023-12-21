@@ -75,7 +75,6 @@ const ViewExpenses = () => {
 
   const handleDeleteRow = async (e, id) => {
     e.preventDefault();
-
     try {
       const response = await fetch(`http://localhost:5001/api/expenses/${id}`, {
         method: "DELETE",

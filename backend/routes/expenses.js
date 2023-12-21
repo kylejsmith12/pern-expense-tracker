@@ -43,10 +43,6 @@ router.post("/", upload.none(), authenticateToken, async (req, res) => {
   const { amount, category, date, notes } = req.body;
   const receipt = req.file ? req.file.buffer : null;
   const userId = req.user.userId; // Assuming you have user information in the request
-  console.log("req user", req.user);
-  console.log("req", req);
-
-  console.log("req user", req.user.userId);
 
   try {
     const result = await pool.query(
@@ -80,11 +76,10 @@ router.get("/", async (req, res) => {
 // Delete an expense by ID
 router.delete("/:id", authenticateToken, async (req, res) => {
   const expenseId = req.params.id;
-
   try {
     const result = await pool.query(
       "DELETE FROM expenses WHERE id = $1 AND user_id = $2 RETURNING *",
-      [expenseId, req.user.id]
+      [expenseId, req.user.userId]
     );
     // console.log("result: ", result);
     if (result.rows.length > 0) {

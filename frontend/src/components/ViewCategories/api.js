@@ -6,8 +6,6 @@ export const fetchData = async (selectedMonth) => {
     const response = await fetch(apiUrl);
     const data = await response.json();
 
-    console.log("API data:", data);
-
     if (!Array.isArray(data)) {
       console.error("API did not return an array:", data);
       return null;

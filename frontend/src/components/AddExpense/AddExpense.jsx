@@ -77,18 +77,12 @@ const AddExpense = ({ user }) => {
     );
     formData.append("date", date);
     formData.append("notes", notes);
-    console.log("userId: ", user);
     formData.append("user_id", user.id); // Include user ID in the FormData
 
     // Append receipt only if it exists
     if (receipt) {
       formData.append("receipt", receipt);
     }
-    console.log(amount);
-    console.log(selectedCategory);
-    console.log(date);
-    console.log(notes);
-    console.log(user.id);
     try {
       const response = await fetch("http://localhost:5001/api/expenses", {
         method: "POST",
