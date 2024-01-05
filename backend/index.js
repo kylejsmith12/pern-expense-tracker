@@ -9,7 +9,7 @@ require("dotenv").config();
 const app = express();
 
 const corsOptions = {
-  origin: "http://localhost:5173",
+  origin: "http://pern-expense-tracker-s3.s3-website.us-east-2.amazonaws.com/",
   credentials: true, // Allow credentials
 };
 
